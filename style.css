@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 16px;
+}
+
+.letterConteiner {
+    display: flex;
+    justify-content: center;
+}
+
+.letter {
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    line-height: 2rem;
+    border: 1px solid black;
+}
+
+.startGame {
+    width: 30%;
+    height: 5vh;
+    margin-left: 35%;
+}
+
+#wordConteiner {
+    display: flex;
+    justify-content: center;
+}
+
+.test {
+    width: 100px;
+    height: 20px;
+    border-bottom: 1px solid black;
+    margin: 20px;
+    text-align: center;
+}
