@@ -47,14 +47,14 @@ const createFloor = length => {
     const conteinerForWord = document.getElementById("wordConteiner");
     for (let i = 0; i < length; i++) {
         wordLetters = document.createElement("div");
-        wordLetters.classList.add("test");
+        wordLetters.classList.add("floor");
         conteinerForWord.appendChild(wordLetters);
     }
 }
 
 const writeLetter = (letter, word) => {
     let miss = true;
-    let tests = document.querySelectorAll(".test");
+    let tests = document.querySelectorAll(".floor");
     for (let i = 0; i < word.length; i++) {
         if (letter.toLowerCase() == word[i]) {
             ++point;
