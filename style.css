@@ -40,3 +40,16 @@
     margin: 20px;
     text-align: center;
 }
+
+.communicate {
+    width: 100%;
+    font-size: 3em;
+    text-align: center;
+    height: 10vh;
+    line-height: 10vh;
+}
+
+.live {
+    text-align: center;
+    margin-top: 5vh;
+}

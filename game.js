@@ -1,27 +1,28 @@
-var words = ['ziemia', 'zamek', 'tecza'];
+var words = ['ziemia', 'zamek', 'tecza', 'kwiat', 'komputer', 'telefon'];
 var point = 0;
 
 const gameOn = function() {
+
+    // game start communicate 
+    var liveConteiner = document.querySelector(".live");
+    let live = 5;
+    liveConteiner.innerText = "Pozostało " + live + "żyć";
 
     //clear boardConteiner for new game;
     const boardConteiner = document.querySelector('.boardConteiner');
     boardConteiner.innerHTML = '';
 
-    let live = 5;
     // createGameBoard
-    createGameBoard()
+    createGameBoard();
 
     // Get word from Array 
     let word = words[getRandomWord(words.length)];
-    console.log(word);
 
     //createFloor for word letters 
     createFloor(word.length);
 
-
     // Get letter onClick
     const letterConteiner = document.querySelector(".letterConteiner");
-    const getLetter = e => e.target.innerText;
 
 
     letterConteiner.addEventListener("click", e => {
@@ -29,17 +30,21 @@ const gameOn = function() {
 
         if (writeLetter(letter, word)) {
             live--;
+            liveConteiner.innerText = "Pozostało " + live + " żyć";
             if (live == 0)
                 endGame(true);
         }
     });
+};
+
+const getLetter = e => {
+    e.target.style.display = "none";
+    return e.target.innerText;
 }
 
 const getRandomWord = length => Math.floor(Math.random() * length);
 const createFloor = length => {
-
     const conteinerForWord = document.getElementById("wordConteiner");
-
     for (let i = 0; i < length; i++) {
         wordLetters = document.createElement("div");
         wordLetters.classList.add("test");
@@ -50,7 +55,6 @@ const createFloor = length => {
 const writeLetter = (letter, word) => {
     let miss = true;
     let tests = document.querySelectorAll(".test");
-
     for (let i = 0; i < word.length; i++) {
         if (letter.toLowerCase() == word[i]) {
             ++point;
@@ -62,7 +66,7 @@ const writeLetter = (letter, word) => {
         }
     }
     return miss;
-}
+};
 
 const createGameBoard = () => {
 
@@ -88,7 +92,7 @@ const createGameBoard = () => {
     const wordConteiner = document.createElement('div');
     wordConteiner.id = 'wordConteiner';
     boardConteiner.prepend(wordConteiner);
-}
+};
 
 
 const startButton = document.querySelector(".startGame");
@@ -98,17 +102,15 @@ startButton.addEventListener("click", () => {
 });
 
 const endGame = isDead => {
-        const boardConteiner = document.querySelector('.boardConteiner');
-        boardConteiner.innerHTML = '';
-        if (isDead) {
-            boardConteiner.innerText = " Przegrałeś!"
-        } else {
-            boardConteiner.innerText = 'Wygrałeś!';
-        }
-
-        const startButton = document.querySelector(".startGame");
-        startButton.disabled = false;
+    const boardConteiner = document.querySelector('.boardConteiner');
+    boardConteiner.innerHTML = '';
+    if (isDead) {
+        boardConteiner.innerHTML = "<p class='communicate'>Przegrałeś - Liczba punktów: " + point + "</p>";
+    } else {
+        boardConteiner.innerHTML = "<p class='communicate'>Wygrałeś - Liczba punktów: " + point + "</p>";;
     }
-    // Isuses to fix 
-    // Multiplayers mode
-    // space in words;
+    point = 0;
+
+    const startButton = document.querySelector(".startGame");
+    startButton.disabled = false;
+};
